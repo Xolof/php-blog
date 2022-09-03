@@ -1,5 +1,10 @@
 <?php
 
+spl_autoload_register(function ($class) {
+  $parts = explode('\\', $class);
+  include dirname(__DIR__) . "/class/" . implode($parts, DIRECTORY_SEPARATOR) . '.php';
+});
+
 session_start();
 if (!isset($_SESSION["theme"])) {
   $_SESSION["theme"] = "light";
@@ -13,5 +18,5 @@ $pageTitle = "Fish Site";
 
 $host = $_SERVER['HTTP_HOST'];
 
-require(dirname(__DIR__) . "/vendor/parsedown-1.7.4/Parsedown.php");
-$Parsedown = new Parsedown();
+$Parsedown = new Erusev\Parsedown();
+
