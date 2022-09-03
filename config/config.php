@@ -1,6 +1,6 @@
 <?php
 
-include("../etc/autoloader.php");
+include("../config/autoloader.php");
 
 session_start();
 if (!isset($_SESSION["theme"])) {

@@ -1,7 +1,7 @@
 <?php
 
-require("../etc/config.php");
+require("../config/config.php");
 
-require("../etc/functions.php");
+require("../src/functions.php");
 
-require("../etc/router.php");
+require("../src/router.php");
