@@ -1,0 +1,23 @@
+.searchForm {
+	width: 25.5%;
+	position: absolute;
+	right: 0;
+	top: -0.5em;
+}
+
+.searchForm svg {
+	position: absolute;
+	height: 1.6em;
+	top: 0.3em;
+	right: 0.3em;
+}
+
+.searchForm input {
+	background-color: var(--containerBgColor);
+	border: 2px solid var(--containerBgColor);
+	border-radius: 2px;
+}
+
+input[type=search] {
+	width: 100%;
+}

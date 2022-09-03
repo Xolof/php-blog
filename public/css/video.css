@@ -1,0 +1,43 @@
+.videoLink {
+	display: block;
+	text-decoration: none;
+}
+
+.videoLinkDiv {
+	position: relative;
+}
+
+.videoLinkDiv:hover .playIcon {
+	background-color: #d80101;
+}
+
+p .videoLink {
+	display: none;
+}
+
+.playIcon {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+	width: 10%;
+	height: 12.5%;
+	background-color: #000;
+	border-radius: 28%;
+	transition: background-color 0.2s ease;
+}
+
+.playIcon .arrow {
+	position: absolute;
+	top: 50%;
+	left: 55%;
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+	border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 30px solid #fff;
+  height: 0px;
+}

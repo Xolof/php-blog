@@ -1,0 +1,43 @@
+article {
+	margin-bottom: 2.8em;
+}
+
+article h1 a {
+	text-decoration: none;
+	color: var(--textColor);
+}
+
+article img {
+	max-width: 100%;
+}
+
+.articles {
+	width: 67%;
+}
+
+.previous {
+	float: left;
+	margin-right: 1em;
+}
+
+.next {
+	float: right;
+}
+
+.nextPrevLinks {
+	display: block;
+	height: 2em;
+	margin-top: 1em;
+}
+
+article h1 a:visited {
+	color: var(--textColor);
+}
+
+article h1 a:active {
+	color: var(--linkColorActive);
+}
+
+.pageHeading {
+	margin-bottom: 1em;
+}

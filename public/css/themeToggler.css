@@ -1,0 +1,44 @@
+.themeToggler {
+  position: absolute;
+  width: 50px;
+  height: 28px;
+  right: 1em;
+  top: 1em;
+  background-color: #222;
+  border-radius: 15px;
+}
+
+.themeToggler .sun,
+.themeToggler .moon {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  border-radius: 50%;
+  top: 2px;
+}
+
+.themeToggler .sun {
+  background-color: #f7f786;
+  left: 0;
+}
+
+.themeToggler:hover .sun {
+  background-color: #ffff2d;
+}
+
+.themeToggler .moon {
+  left: 25px;
+  background-color: aliceblue;
+  background-color: #222;
+  width: 25px;
+  height: 25px;
+  border: 2px solid #222;
+  box-shadow: inset 0px 8px aliceblue, inset 0px 8px 1px 1px aliceblue;
+  -moz-box-shadow: inset 0px 8px aliceblue, inset 0px 8px 1px 1px aliceblue;
+  transform: rotate(135deg);
+}
+
+.themeToggler:hover .moon {
+  box-shadow: inset 0px 8px #d8ecfd, inset 0px 8px 1px 1px #d8ecfd;
+  -moz-box-shadow: inset 0px 8px #d8ecfd, inset 0px 8px 1px 1px #d8ecfd;
+}

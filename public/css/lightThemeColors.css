@@ -1,0 +1,19 @@
+:root {
+  --bodyBgColor: #262e44;
+  --textColor: var(--primaryTextColor);
+  --containerBgColor: #fff;
+  --headerColor: #3d6868;
+  --footerColor: var(--bodyBgColor);
+  --faded: #5a5a5a;
+  --warningError: #a30909;
+  --warningErrorBright: #cf0808;
+  --secondaryTextColor: #fff;
+  --formBorderColor: #a1a1a1;
+  --success: #93c746;
+  --primaryTextColor: #080808;
+  --buttonHoverColor: #206d6d;
+  --activeLinkText: var(--warningErrorBright);
+  --linkColor: #1d1ddd;
+  --linkColorVisited: purple;
+  --linkColorActive: #d80101;
+}

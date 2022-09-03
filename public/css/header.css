@@ -1,0 +1,67 @@
+.header-nav {
+	position: relative;
+}
+
+.header-nav ul li {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.header-nav ul {
+	padding: 0;
+}
+
+.header-nav ul li a {
+	color: var(--secondaryTextColor);
+	font-weight: bold;
+	text-decoration: none;
+	border: 4px solid transparent;
+}
+
+.header-nav ul li a:hover {
+	text-decoration: underline;
+}
+
+.header-nav ul li a:active {
+	border: 4px dotted var(--primaryTextColor);
+	color: var(--activeLinkText);
+}
+
+header {
+	padding: 0.2em 0;
+	background-color: var(--headerColor);
+}
+
+.homeLinkLi {
+	position: relative;
+	width: 2.2em;
+	top: 0.1em;
+	border: 4px solid transparent;
+	padding-right: 0.1em;
+}
+
+.homeLinkLi:active {
+	border: 4px dotted var(--primaryTextColor);
+}
+
+.homeLink {
+	position: relative;
+	left: 0;
+	right: 0;
+	top: -0.1em;
+	bottom: 0.1em;
+}
+
+.header-nav ul .homeLinkLi .homeLink {
+	border: 4px solid transparent;
+}
+
+.header-nav ul .homeLinkLi .homeLink:active {
+	border: 4px solid transparent;
+}
+
+.homeLink svg {
+	height: 1.6em;
+	position: absolute;
+	bottom: 0;
+}

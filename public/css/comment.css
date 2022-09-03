@@ -1,0 +1,12 @@
+.comment {
+	border-bottom: 1px solid var(--faded);
+}
+
+.commentDate {
+	color: var(--faded);
+	font-weight: normal;
+}
+
+.websiteField {
+	display: none;
+}

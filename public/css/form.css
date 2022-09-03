@@ -1,0 +1,54 @@
+form {
+	position: relative;
+	width: 100%;
+}
+
+form * {
+	display: block;
+}
+
+form input,
+form textarea {
+	margin-bottom: 0.5em;
+	padding: 0.4em;
+	color: var(--primaryTextColor);
+	background-color: var(--containerBgColor);
+	border: 1px solid var(--formBorderColor);
+}
+
+form input[type=text].create,
+form input[type=text].update,
+form input[type=text].delete {
+	display: block;
+	min-width: 100%;
+}
+
+form textarea {
+	display: block;
+	min-width: 100%;
+	max-width: 100%;
+	min-height: 100px;
+}
+
+input[type=submit] {
+	cursor: pointer;
+}
+.commentsSection,
+.commentFormSection {
+	margin-top: 2em;
+}
+
+.commentForm {
+	display: block;
+	border-bottom: 1px solid var(--faded);
+	padding-bottom: 0.4em;
+}
+
+.commentForm input[type=text],
+.contactForm input[type=text],
+.contactForm input[type=email],
+.createForm input[type=text],
+.updateForm input[type=text],
+.deleteForm input[type=text]{
+	width: 100%;
+}

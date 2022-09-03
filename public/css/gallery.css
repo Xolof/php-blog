@@ -1,0 +1,58 @@
+.galleryImage {
+	height: auto;
+}
+
+.galleryImages {
+	display: flex;
+	flex-flow: wrap;
+	justify-content: space-between;
+}
+
+.galleryImages div {
+	margin-bottom: 1em;
+	width: 45%;
+}
+.addImageToPostButton {
+	display: block;
+}
+.addImageToPostButton,
+.imageFileInputLabel {
+	padding: 0.4em;
+	cursor: pointer;
+}
+
+.imageFileInputLabel {
+	padding: 0.1em 0.3em;
+	margin-bottom: 0.4em;
+	width: fit-content;
+	cursor: pointer;
+}
+
+form input[type=submit],
+.addImageToPostButton,
+.imageFileInputLabel {
+	background-color: var(--headerColor);
+	color: var(--secondaryTextColor);
+	border: 1px solid var(--headerColor);
+	border-radius: 4px;
+	transition: 0.2s background-color ease;
+}
+
+form input[type=submit]:hover,
+.addImageToPostButton:hover,
+.imageFileInputLabel:hover,
+.toTopLink:hover {
+	background-color: var(--buttonHoverColor);
+	border: 1px solid var(--buttonHoverColor);
+}
+
+#imageFileInput {
+	height: .1px;
+	width: .1px;
+  opacity: 0;
+  position: absolute;
+}
+
+#saveImage {
+	display: none;
+}

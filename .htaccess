@@ -1,0 +1,8 @@
+Options All -Indexes     
+RewriteEngine on
+AddType text/css .css
+AddType text/javascript .js
+RewriteCond %{REQUEST_URI} !(\.css|\.js|\.png|\.jpg|\.gif|robots\.txt)$ [NC]
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^.*$ public/index.php [QSA,L]

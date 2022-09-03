@@ -1,0 +1,35 @@
+.crudLink {
+	text-decoration: none;
+	margin-right: 1em;
+}
+
+.crudLink.create {
+	display: block;
+	margin-bottom: 1em;
+}
+
+.crudLink,
+.crudLink:visited {
+	color: var(--linkColor)
+}
+
+.crudLink.create:hover {
+	color: var(--textColor);
+	text-decoration: underline;
+}
+
+.crudLink.create:active {
+	color: var(--linkColorActive);
+}
+
+#delete {
+	border: 2px solid var(--warningError);
+	background-color: var(--warningError);
+	color: var(--secondaryTextColor);
+	font-weight: bold;
+}
+
+#delete:hover {
+	border: 2px solid var(--warningErrorBright);
+	background-color: var(--warningErrorBright);
+}

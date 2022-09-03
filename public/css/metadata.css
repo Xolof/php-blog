@@ -1,0 +1,39 @@
+.metaData a,
+.sidebar a,
+article a {
+	color: var(--linkColor);
+	text-decoration: none;
+	border: 4px solid transparent
+}
+
+.metaData a:visited,
+.sidebar a:visited,
+article a:visited {
+	color:var(--linkColorVisited);
+}
+
+.metaData a:active,
+.sidebar a:active,
+article a:active,
+.siteTitleHeader a:active,
+.pageTitleHeader a:active {
+	color: var(--linkColorActive);
+	border: 4px dotted var(--primaryTextColor);
+}
+
+.metaData a:hover,
+.sidebar a:hover,
+article a:hover {
+	text-decoration: underline;
+}
+
+.metaData {
+	list-style: none;
+	padding: 0;
+	color: var(--faded);
+}
+
+.metaData li {
+	display: inline-block;
+	margin-right: 1em;
+}

@@ -1,0 +1,1 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='none' stroke='<?= $_SESSION["theme"] === "dark" ? "#A5A5A5" : "#0E1A27" ?>' stroke-width='8' stroke-linecap='round' stroke-linejoin='round'><circle cx="60" cy="40" r="30"/><line x1="10" y1="90" x2="38" y2="62" /></svg>

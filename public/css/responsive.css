@@ -1,0 +1,59 @@
+@media(min-width: 1285px) {
+	.toTopLink {
+		right: auto;
+		margin-left: 1200px;
+	}
+}
+
+@media(max-width: 1285px) {
+	.homeContainer .flexContainer aside,
+	.homeContainer .flexContainer .siteIntro {
+		width: 100%;
+	}
+}
+
+@media(max-width: 900px) {
+	article {
+		max-width: 100%;
+	}
+
+	.articles,
+	.sidebar {
+		width: 100%;
+	}
+
+
+  .sidebar {
+    padding-top: 0;
+  }
+
+	.flexContainer {
+		flex-direction: column;
+	}
+
+	.searchForm {
+		position: relative;
+		width: 100%;
+		margin-top: 0.4em;
+	}
+
+	.searchForm input[type=search],
+	input {
+		width: 100%;
+	}
+
+	.homeContainer .flexContainer aside {
+		flex-direction: column;
+	}
+
+	.homeContainer .flexContainer aside section {
+		width: 100%;
+	}
+}
+
+@media(max-width: 600px) {
+	.playIcon {
+		width: 20%;
+		height: 25%;
+	}
+}
