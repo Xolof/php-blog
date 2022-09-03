@@ -1,6 +1,6 @@
 <?php
 
-include("../config/autoloader.php");
+include("../vendor/autoload.php");
 
 session_start();
 if (!isset($_SESSION["theme"])) {
@@ -16,4 +16,3 @@ $pageTitle = "Fish Site";
 $host = $_SERVER['HTTP_HOST'];
 
 $Parsedown = new Erusev\Parsedown();
-

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace PhpBlog\Xolof;
+namespace Xolof;
 
 use PHPUnit\Framework\TestCase;
 

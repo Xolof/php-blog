@@ -1,5 +1,10 @@
 <?php
 
+use Xolof\Router as Router;
+
+$router = new Router;
+$router->get();
+
 $routes = [
   "/"                 => "../view/start.php",
   "/contact"          => "../view/contact.php",

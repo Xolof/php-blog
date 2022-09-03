@@ -1,6 +1,6 @@
 <?php
 
-namespace PhpBlog\Xolof;
+namespace Xolof;
 
 class Router
 {

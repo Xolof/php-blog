@@ -5,7 +5,8 @@
     },
     "autoload": {
       "psr-4": {
-          "PhpBlog\\": "src/"
+          "Xolof\\": "src/Xolof",
+          "Erusev\\": "src/Erusev"
       }
     },
     "authors": [
