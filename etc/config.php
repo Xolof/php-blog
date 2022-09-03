@@ -1,9 +1,6 @@
 <?php
 
-spl_autoload_register(function ($class) {
-  $parts = explode('\\', $class);
-  include dirname(__DIR__) . "/class/" . implode($parts, DIRECTORY_SEPARATOR) . '.php';
-});
+include("../etc/autoloader.php");
 
 session_start();
 if (!isset($_SESSION["theme"])) {
