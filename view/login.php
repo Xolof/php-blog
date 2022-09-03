@@ -1,3 +1,7 @@
+<?php
+    require("../templates/header.php");
+?>
+
 <div class="articles">
 	<article>
 		<h1 class="pageTitleHeader">Log in</h1>
@@ -11,3 +15,8 @@
 		</form>
 	</article>
 </div>
+
+<?php
+  require("../templates/sidebar.php");
+  require("../templates/footer.php");
+?>

@@ -1,3 +1,7 @@
+<?php
+    require("../templates/header.php");
+?>
+
 <div class="articles">
   <article>
 
@@ -37,7 +41,7 @@
     </form>
     
     <?php
-      require("../view/gallery.php");
+      require("../templates/gallery.php");
     ?>
 
   <?php else: ?>
@@ -48,3 +52,8 @@
 
   </article>
   </div>
+
+<?php
+  require("../templates/sidebar.php");
+  require("../templates/footer.php");
+?>

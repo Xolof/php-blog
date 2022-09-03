@@ -1,3 +1,7 @@
+<?php
+    require("../templates/header.php");
+?>
+
 <div class="articles">
 
 <h1 class="pageTitleHeader">Blog</h1>
@@ -53,3 +57,8 @@ if (count($posts) < 1) {
 ?>
 
 </div>
+
+<?php
+  require("../templates/sidebar.php");
+  require("../templates/footer.php");
+?>

@@ -1,4 +1,8 @@
 <?php
+    require("../templates/header.php");
+?>
+
+<?php
 
 $exploded = explode("/", $request);
 if (array_key_exists(1, $exploded)) {
@@ -73,3 +77,8 @@ usort($allPosts,
 <?php else: ?>
   <?php redirect("/404"); ?>
 <?php endif; ?>
+
+<?php
+  require("../templates/sidebar.php");
+  require("../templates/footer.php");
+?>
