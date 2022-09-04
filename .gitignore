@@ -11,3 +11,6 @@ public/img/gallery/**
 .php-cs-fixer.cache
 coverage
 
+/tests/selenium/geckodriver.log
+/tests/selenium/.pytest.cache/
+/tests/selenium/__pycache__/
