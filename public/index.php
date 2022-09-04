@@ -1,7 +1,7 @@
 <?php
 
-require("../config/config.php");
+require("../config/start.php");
 
-require("../src/functions.php");
+require("../protected/functions.php");
 
-require("../src/router.php");
+require("../protected/routing.php");
