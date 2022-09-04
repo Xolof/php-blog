@@ -99,7 +99,7 @@ class Post
 
     public function addComment($postId, $name, $comment)
     {
-        $posts = getAllPosts();
+        $posts = $this->getAllPosts();
 
         $commentObj = new \stdClass();
 
@@ -117,7 +117,7 @@ class Post
         }
 
         try {
-            savePosts($posts);
+            $this->savePosts($posts);
         } catch (\Exception $e) {
             return false;
         }
