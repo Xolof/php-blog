@@ -1,6 +1,6 @@
 <?php
-    require("../templates/header.php");
-    ?>
+require("../templates/header.php");
+?>
 
 <div class="articles">
 	<article>
@@ -17,6 +17,6 @@
 </div>
 
 <?php
-      require("../templates/sidebar.php");
-    require("../templates/footer.php");
-    ?>
+require("../templates/sidebar.php");
+require("../templates/footer.php");
+?>

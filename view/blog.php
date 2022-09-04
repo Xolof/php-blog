@@ -62,6 +62,6 @@ if (count($posts) < 1) {
 </div>
 
 <?php
-    require("../templates/sidebar.php");
-  require("../templates/footer.php");
-  ?>
+require("../templates/sidebar.php");
+require("../templates/footer.php");
+?>

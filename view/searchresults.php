@@ -1,7 +1,7 @@
 <?php
     require("../templates/header.php");
     $Parsedown = new Erusev\Parsedown();
-    ?>
+?>
 
 <?php
       if (!isset($_GET["query"]) && !isset($_GET["tag"])) {
@@ -103,6 +103,6 @@
 </div>
 
 <?php
-  require("../templates/sidebar.php");
-    require("../templates/footer.php");
-    ?>
+require("../templates/sidebar.php");
+require("../templates/footer.php");
+?>

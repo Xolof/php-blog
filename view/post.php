@@ -1,7 +1,7 @@
 <?php
     require("../templates/header.php");
     $Parsedown = new Erusev\Parsedown();
-    ?>
+?>
 
 <?php
 

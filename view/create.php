@@ -1,13 +1,13 @@
 <?php
-    require("../templates/header.php");
-    ?>
+require("../templates/header.php");
+?>
 
 <?php
 if (!user_is_logged_in()) {
     $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "You must be logged in to create a post"];
     redirect("/");
 }
-    ?>
+?>
 
 <div class="articles">
 	<article>
@@ -25,13 +25,13 @@ if (!user_is_logged_in()) {
     </form>
 
     <?php
-          require("../templates/gallery.php");
+      require("../templates/gallery.php");
     ?>
 
   </article>
 </div>
 
 <?php
-  require("../templates/sidebar.php");
-    require("../templates/footer.php");
-    ?>
+require("../templates/sidebar.php");
+require("../templates/footer.php");
+?>

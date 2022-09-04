@@ -1,6 +1,6 @@
 <?php
-    require("../templates/header.php");
-    ?>
+require("../templates/header.php");
+?>
 
 <div class="heroBanner">
   <img src="/img/hero.webp" alt="Trout under water">
@@ -11,6 +11,6 @@
 </section>
 
 <?php
-      require("../templates/sidebar.php");
-    require("../templates/footer.php");
-    ?>
+require("../templates/sidebar.php");
+require("../templates/footer.php");
+?>

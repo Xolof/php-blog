@@ -1,6 +1,6 @@
 <?php
-    require("../templates/header.php");
-    ?>
+require("../templates/header.php");
+?>
 
 <div class="articles">
   <article>
@@ -8,12 +8,12 @@
   <h1 class="pageTitleHeader">Update</h1>
 
   <?php
-      if(!user_is_logged_in()) {
-          $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "You must be logged in to update a post"];
-          redirect("/");
-      }
+    if(!user_is_logged_in()) {
+        $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "You must be logged in to update a post"];
+        redirect("/");
+    }
 
-      $postId = $_GET["id"];
+    $postId = $_GET["id"];
 
     if (!is_numeric($postId)) {
         $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "postId must be numeric"];
@@ -41,7 +41,7 @@
       <textarea name="content" rows="10" cols="70"><?= $markdown ?></textarea>
       <input type="submit" name="update" id="update" value="Update">
     </form>
-    
+
     <?php
         require("../templates/gallery.php");
       ?>
