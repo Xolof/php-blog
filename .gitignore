@@ -8,4 +8,6 @@ public/img/gallery/**
 /tools/php-cs-fixer/vendor/
 
 .phpunit.cache
+.php-cs-fixer.cache
 coverage
+
