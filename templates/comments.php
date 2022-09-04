@@ -2,20 +2,21 @@
   <?php if (isset($post->comments) && count($post->comments)): ?>
     <?php
       $comments = $post->comments;
-      usort($comments,
-      function ($a, $b) {
-        if ($a->date < $b->date) {
-          return 1;
-        }
-  
-        if ($a->date > $b->date) {
-          return -1;
-        }
-  
-        return 0;
-      }
-    );
-    ?>
+      usort(
+          $comments,
+          function ($a, $b) {
+              if ($a->date < $b->date) {
+                  return 1;
+              }
+
+              if ($a->date > $b->date) {
+                  return -1;
+              }
+
+              return 0;
+          }
+      );
+      ?>
     <?php foreach($comments as $commentObj): ?>
       <div class="comment">
         <h4 class="commentName">

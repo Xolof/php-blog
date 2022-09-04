@@ -1,13 +1,13 @@
 <?php
   if (count($_GET)) {
-    $previousGetQueries = "";
-    foreach($_GET as $key => $value) {
-      if ($key != "theme") {
-        $previousGetQueries .= htmlspecialchars($key) . "=" . htmlspecialchars($value) . "&";
-      } 
-    }
+      $previousGetQueries = "";
+      foreach ($_GET as $key => $value) {
+          if ($key != "theme") {
+              $previousGetQueries .= htmlspecialchars($key) . "=" . htmlspecialchars($value) . "&";
+          }
+      }
   }
-?>
+  ?>
 
 <a
   class="themeToggler"

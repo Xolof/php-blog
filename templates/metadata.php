@@ -3,9 +3,9 @@
     <?php if ($v): ?>
       <li>
         <?php if ($k === "tags"): ?>
-          <?php 
+          <?php
             $metaTags = (explode(" ", $v));
-          ?>
+            ?>
           <?= ucwords($k) ?>:
           <?php foreach ($metaTags as $metaTag): ?>
             <a href="/search?tag=<?= $metaTag ?>"><?= $metaTag ?></a>

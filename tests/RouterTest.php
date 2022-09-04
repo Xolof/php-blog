@@ -109,7 +109,7 @@ final class RouterTest extends TestCase
         $router = new Router("/", "GET", $postObj);
 
         $router->validate();
-        
+
         $this->assertEquals(
             false,
             $router->getRedirectPath()

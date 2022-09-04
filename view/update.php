@@ -1,6 +1,6 @@
 <?php
     require("../templates/header.php");
-?>
+    ?>
 
 <div class="articles">
   <article>
@@ -8,29 +8,29 @@
   <h1 class="pageTitleHeader">Update</h1>
 
   <?php
-  if(!user_is_logged_in()) {
-    $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "You must be logged in to update a post"];
-    redirect("/");
-  }
+      if(!user_is_logged_in()) {
+          $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "You must be logged in to update a post"];
+          redirect("/");
+      }
 
-  $postId = $_GET["id"];
+      $postId = $_GET["id"];
 
-  if (!is_numeric($postId)) {
-    $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "postId must be numeric"];
-    redirect("/blog");
-  }
+    if (!is_numeric($postId)) {
+        $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "postId must be numeric"];
+        redirect("/blog");
+    }
 
-  $postObj = new Xolof\Post(dirname(__DIR__) . "/content/posts/posts.json");
-  $post = $postObj->getPost($postId);
+    $postObj = new Xolof\Post(dirname(__DIR__) . "/content/posts/posts.json");
+    $post = $postObj->getPost($postId);
 
-  ?>
+    ?>
 
   <?php if ($post): ?>
     <?php
-      isUsersFile($postId);
+        isUsersFile($postId);
       $markdown = $post->content;
-      $metaData = $post->metadata;  
-    ?>
+      $metaData = $post->metadata;
+      ?>
     <form action="/update-process" method="post" class="updateForm">
       <input type="hidden" name="postId" value="<?= $postId ?>">
       <label for="title">Title</label>
@@ -43,13 +43,13 @@
     </form>
     
     <?php
-      require("../templates/gallery.php");
-    ?>
+        require("../templates/gallery.php");
+      ?>
 
   <?php else: ?>
     <?php
-      redirect("/404");
-    ?>
+        redirect("/404");
+      ?>
   <?php endif; ?>
 
   </article>
@@ -57,5 +57,5 @@
 
 <?php
   require("../templates/sidebar.php");
-  require("../templates/footer.php");
-?>
+    require("../templates/footer.php");
+    ?>

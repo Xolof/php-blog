@@ -9,12 +9,12 @@ if (isset($_SESSION["flash_message"])) {
 }
 
 if (isset($_GET["theme"])) {
-  $theme = $_GET["theme"];
-  if ($theme === "dark") {
-    $_SESSION["theme"] = "dark";
-  } else if ($theme === "light") {
-    $_SESSION["theme"] = "light";
-  }
+    $theme = $_GET["theme"];
+    if ($theme === "dark") {
+        $_SESSION["theme"] = "dark";
+    } elseif ($theme === "light") {
+        $_SESSION["theme"] = "light";
+    }
 }
 
 $siteConfig = require("../config/siteConfig.php");
@@ -29,7 +29,7 @@ $pageTitle = $siteConfig["pageTitle"];
     <title><?= $pageTitle ?></title>
     <?php
       $baseUrl = $_SERVER["HTTP_HOST"];
-    ?>
+?>
     <link rel="stylesheet" href="<?php $baseUrl ?>/css/normalize_8.0.1.css" />
     <link rel="stylesheet" href="/css/<?= $_SESSION["theme"] === "dark" ? "darkThemeColors.css" : "lightThemeColors.css" ?>" />
     <link rel="stylesheet" href="<?php $baseUrl ?>/css/styles.css" />

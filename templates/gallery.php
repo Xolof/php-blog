@@ -19,7 +19,9 @@
   <?php foreach (new DirectoryIterator($imageDir) as $file): ?>
       <?php
         $imageName = $file->getFilename();
-        if($file->isDot() || $imageName === ".gitkeep") continue;
+      if($file->isDot() || $imageName === ".gitkeep") {
+          continue;
+      }
       ?>
       <div>
         <img src="<?= "/img/gallery/" . $imageName ?>" alt="<?= $imageName ?>" class="galleryImage">

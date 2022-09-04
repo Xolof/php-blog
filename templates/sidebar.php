@@ -1,24 +1,30 @@
 <?php
 
+
   $postObj = new Xolof\Post(dirname(__DIR__) . "/content/posts/posts.json");
+
   $posts = $postObj->getAllPosts();
 
-  usort($posts,
-    function ($a, $b) {
-      if ($a->metadata->created < $b->metadata->created) {
-        return 1;
-      }
 
-      if ($a->metadata->created > $b->metadata->created) {
-        return -1;
-      }
+  usort(
+      $posts,
+      function ($a, $b) {
+          if ($a->metadata->created < $b->metadata->created) {
+              return 1;
+          }
 
-      return 0;
-    }
+          if ($a->metadata->created > $b->metadata->created) {
+              return -1;
+          }
+
+          return 0;
+      }
   );
 
+
   $posts = array_slice($posts, 0, 5);
-?>
+
+  ?>
 
 <aside class="sidebar">
   <section>
@@ -37,7 +43,8 @@
   </section>
   
   <?php
-      $tags = $postObj->getAllTags();
+        $tags = $postObj->getAllTags();
+
   ?>
   <section>
     <h2>Tags</h2>

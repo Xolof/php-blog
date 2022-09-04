@@ -1,25 +1,31 @@
 <?php
 
+
   $created = $post->metadata->created;
 
+
   $allPreviousPosts = array_filter($allPosts, function ($p) use ($created) {
-    return $p->metadata->created < $created;
+      return $p->metadata->created < $created;
   }, ARRAY_FILTER_USE_BOTH);
+
 
 
   if (count($allPreviousPosts) > 0) {
-    $previousPost = $allPreviousPosts[array_key_first($allPreviousPosts)];
+      $previousPost = $allPreviousPosts[array_key_first($allPreviousPosts)];
   }
+
 
   $allFollowingPosts = array_filter($allPosts, function ($p) use ($created) {
-    return $p->metadata->created > $created;
+      return $p->metadata->created > $created;
   }, ARRAY_FILTER_USE_BOTH);
 
+
   if (count($allFollowingPosts) > 0) {
-    $nextPost = $allFollowingPosts[array_key_last($allFollowingPosts)];
+      $nextPost = $allFollowingPosts[array_key_last($allFollowingPosts)];
   }
 
-?>
+
+  ?>
 
 <div class="nextPrevLinks">
   <?php if (isset($previousPost)): ?>
