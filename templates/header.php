@@ -17,6 +17,8 @@ if (isset($_GET["theme"])) {
   }
 }
 
+$siteConfig = require("../config/siteConfig.php");
+$pageTitle = $siteConfig["pageTitle"];
 ?>
 
 <!DOCTYPE html>
@@ -58,6 +60,7 @@ if (isset($_GET["theme"])) {
           </nav>
         </div>
       </header>
+      <?php $request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH); ?>
       <main <?= $request === '/' ? ' class="homeContainer"' : '' ?>>
         <div class="flexContainer">
 
