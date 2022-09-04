@@ -2,7 +2,8 @@
 
 if (user_is_logged_in()) {
   $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "You are already logged in"];
-  redirect("http://$host/login");
+  redirect("/login");
+  exit;
 }
 
 if (isset($_POST["action"]) && isset($_POST["username"]) && isset($_POST["password"])) {
@@ -32,7 +33,7 @@ if (isset($_POST["action"]) && isset($_POST["username"]) && isset($_POST["passwo
 
   if (count($errors) > 0) {
     $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "Login failed"];
-    redirect("http://$host/login");
+    redirect("/login");
   } else {
     $_SESSION["flash_message"] = ["cssClass" => "success", "message" => "You have been logged in"];
     // prevent session fixation attack
@@ -40,10 +41,11 @@ if (isset($_POST["action"]) && isset($_POST["username"]) && isset($_POST["passwo
 
     $_SESSION["username"] = $user;
     $_SESSION["user_id"]  = $id;
-    redirect("http://$host");
+    redirect("/");
     exit;
   }
 
 } else {
-  redirect("http://$host");
+  redirect("/");
+  exit;
 };
