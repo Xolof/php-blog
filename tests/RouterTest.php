@@ -10,7 +10,9 @@ final class RouterTest extends TestCase
 {
     public function testSuccessfulGetRequest(): void
     {
-        $router = new Router("/", "GET");
+        $postObj = new Post(dirname(__DIR__) . "/tests/assets/posts.json");
+
+        $router = new Router("/", "GET", $postObj);
 
         $router->get("/", "../view/start.php");
 
@@ -27,7 +29,9 @@ final class RouterTest extends TestCase
 
     public function testFailedGetRequest(): void
     {
-        $router = new Router("/mumin", "GET");
+        $postObj = new Post(dirname(__DIR__) . "/tests/assets/posts.json");
+
+        $router = new Router("/mumin", "GET", $postObj);
 
         $router->get("/", "../view/start.php");
 
@@ -39,7 +43,9 @@ final class RouterTest extends TestCase
 
     public function testInvalidGetRequest(): void
     {
-        $router = new Router("/", "POST");
+        $postObj = new Post(dirname(__DIR__) . "/tests/assets/posts.json");
+
+        $router = new Router("/", "POST", $postObj);
 
         $router->get("/", "../view/start.php");
 
@@ -51,7 +57,9 @@ final class RouterTest extends TestCase
 
     public function testSuccessfulPostRequest(): void
     {
-        $router = new Router("/", "POST");
+        $postObj = new Post(dirname(__DIR__) . "/tests/assets/posts.json");
+
+        $router = new Router("/", "POST", $postObj);
 
         $router->post("/", "../process.php");
 
@@ -68,7 +76,9 @@ final class RouterTest extends TestCase
 
     public function testFailedPostRequest(): void
     {
-        $router = new Router("/nothing-here", "POST");
+        $postObj = new Post(dirname(__DIR__) . "/tests/assets/posts.json");
+
+        $router = new Router("/nothing-here", "POST", $postObj);
 
         $router->post("/", "../process.php");
 
@@ -80,7 +90,9 @@ final class RouterTest extends TestCase
 
     public function testInvalidPostRequest(): void
     {
-        $router = new Router("/", "GET");
+        $postObj = new Post(dirname(__DIR__) . "/tests/assets/posts.json");
+
+        $router = new Router("/", "GET", $postObj);
 
         $router->post("/", "../view/start.php");
 
@@ -92,7 +104,9 @@ final class RouterTest extends TestCase
 
     public function testSetRedirectPath(): void
     {
-        $router = new Router("/", "GET");
+        $postObj = new Post(dirname(__DIR__) . "/tests/assets/posts.json");
+
+        $router = new Router("/", "GET", $postObj);
 
         $router->validate();
         
@@ -101,7 +115,7 @@ final class RouterTest extends TestCase
             $router->getRedirectPath()
         );
 
-        $router = new Router("/apa/ko/gris/får", "GET");
+        $router = new Router("/apa/ko/gris/får", "GET", $postObj);
 
         $router->validate();
 
@@ -113,11 +127,9 @@ final class RouterTest extends TestCase
 
     public function testGetSpecialPage(): void
     {
-        /**
-         * Detta måste mockas,
-         * för tänk om inlägget "perch" inte finns.
-         */
-        $router = new Router("/perch", "GET");
+        $postObj = new Post(dirname(__DIR__) . "/tests/assets/posts.json");
+
+        $router = new Router("/perch", "GET", $postObj);
 
         $router->getSpecialPage();
 
