@@ -47,12 +47,13 @@ function isUsersFile ($postId) {
 
   if (!in_array($postId, getUsersFiles(getUsername()))) {
     $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "You are not allowed to edit that file"];
-    redirect("http://$host/");
+    redirect("/");
   };
 }
 
 function redirect($location) {
-  header("Location: $location");
+  $host = $_SERVER['HTTP_HOST'];
+  header("Location: http://$host$location");
   exit;
 };
 
