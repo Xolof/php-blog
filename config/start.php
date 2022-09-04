@@ -8,11 +8,3 @@ if (!isset($_SESSION["theme"])) {
 }
 
 $request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
- 
-$viewDir = "view/";
-
-$pageTitle = "Fish Site";
-
-$host = $_SERVER['HTTP_HOST'];
-
-$Parsedown = new Erusev\Parsedown();
