@@ -103,7 +103,7 @@ class Post
 
         $commentObj = new \stdClass();
 
-        $currentDate = new DateTime();
+        $currentDate = new \DateTime();
         $dateStr = $currentDate->format("Y-m-d H:i");
         $commentObj->date = $dateStr;
 
