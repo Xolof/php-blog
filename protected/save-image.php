@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Check if user logged in
- *
- * Fånga upp från POST vilket inlägg man kom ifrån
- * eller ska jag köra AJAX?
- */
 if (!user_is_logged_in()) {
     echo "You have to be logged in!";
     http_response_code(401);
