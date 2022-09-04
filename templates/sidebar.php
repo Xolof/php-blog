@@ -1,5 +1,7 @@
 <?php
-  $posts = getAllPosts();
+
+  $postObj = new Xolof\Post(dirname(__DIR__) . "/content/posts/posts.json");
+  $posts = $postObj->getAllPosts();
 
   usort($posts,
     function ($a, $b) {
@@ -35,7 +37,7 @@
   </section>
   
   <?php
-      $tags = getAllTags();
+      $tags = $postObj->getAllTags();
   ?>
   <section>
     <h2>Tags</h2>

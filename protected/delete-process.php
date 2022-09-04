@@ -12,7 +12,8 @@ if (!is_numeric($postId)) {
   redirect("/");
 }
 
-$post = getPost($postId);
+$postObj = new Xolof\Post(dirname(__DIR__) . "/content/posts/posts.json");
+$post = $postObj->getPost($postId);
 
 if ($post) {
   isUsersFile($postId);
@@ -31,7 +32,7 @@ if ($post) {
     }
   }
 
-  $posts = getAllPosts();
+  $posts = $postObj->getAllPosts();
   unset($posts[$postId]);
   
   try {
@@ -39,7 +40,7 @@ if ($post) {
      * TODO: break it out to two try, catches
      */
     saveUsers($usersArr);
-    savePosts($posts);
+    $postObj->savePosts($posts);
   } catch (\Exception $e) {
     // $logger->log($e);
     $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "Post with id could not be deleted"];

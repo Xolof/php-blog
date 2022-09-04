@@ -8,7 +8,8 @@
 <h1 class="pageTitleHeader">Blog</h1>
 
 <?php
-$posts = getAllPosts();
+$postObj = new Xolof\Post(dirname(__DIR__) . "/content/posts/posts.json");
+$posts = $postObj->getAllPosts();
 
 usort($posts,
   function ($a, $b) {
@@ -34,7 +35,7 @@ usort($posts,
     $metaData = $post->metadata;
     $username = getUsername();
     $author = $post->metadata->author;
-    $markdown = getIngress($post->content);
+    $markdown = $postObj->getIngress($post->content);
   ?>
   <article>
     <h1><a href="/<?= $post->slug ?>"><?= $post->title ?></a></h1>

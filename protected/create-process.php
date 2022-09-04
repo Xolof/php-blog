@@ -39,11 +39,12 @@ if ($content === "") {
 $currentDate = new DateTime();
 $dateStr = $currentDate->format("Y-m-d H:i");
 
-$posts = getAllPosts();
+$postObj = new Xolof\Post(dirname(__DIR__) . "/content/posts/posts.json");
+$posts = $postObj->getAllPosts();
 
 $newId = count($posts);
 
-if (titleAlreadyExists($posts, $title, $newId)) {
+if ($postObj->titleAlreadyExists($posts, $title, $newId)) {
   $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "That title is already used by another post"];
   redirect("/create");
 }
@@ -54,7 +55,7 @@ $newPost->metadata->author = getUsername();
 $newPost->metadata->created = $dateStr;
 $newPost->metadata->tags = $tags;
 $newPost->title = $title;
-$newPost->slug = slugify($title);
+$newPost->slug = $postObj->slugify($title);
 $newPost->content = $content;
 $newPost->id = $newId;
 $posts[$newId] = $newPost;  
@@ -68,7 +69,7 @@ foreach($usersArr as $user) {
 
 try {
   saveUsers($usersArr);
-  savePosts($posts);
+  $postObj->savePosts($posts);
 } catch (\Exception $e) {
   // $logger->log($e);
   $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "Could not save the data"];

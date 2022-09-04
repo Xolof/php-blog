@@ -20,7 +20,9 @@
     redirect("/blog");
   }
 
-  $post = getPost($postId);
+  $postObj = new Xolof\Post(dirname(__DIR__) . "/content/posts/posts.json");
+  $post = $postObj->getPost($postId);
+
   ?>
 
   <?php if ($post): ?>

@@ -30,7 +30,8 @@
 <div class="articles">
 
 <?php
-  $allPosts = getAllPosts();
+  $postObj = new Xolof\Post(dirname(__DIR__) . "/content/posts/posts.json");
+  $allPosts = $postObj->getAllPosts();
 
   usort($allPosts,
     function ($a, $b) {
@@ -62,7 +63,7 @@
     $metaData = $post->metadata;
     $title = $post->title;
     $author = $post->metadata->author;
-    $markdown = getIngress($post->content);
+    $markdown = $postObj->getIngress($post->content);
     $metaDataToSearch = "";
     $slug = $post->slug;
     foreach ($metaData as $k => $v) {

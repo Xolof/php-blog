@@ -5,7 +5,8 @@
 
 <?php
 
-$allPosts = getAllPosts();
+$postObj = new Xolof\Post(dirname(__DIR__) . "/content/posts/posts.json");
+$allPosts = $postObj->getAllPosts();
 
 usort($allPosts,
   function ($a, $b) {

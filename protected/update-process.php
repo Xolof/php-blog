@@ -15,7 +15,8 @@ if (!is_numeric($postId)) {
   redirect("/");
 }
 
-$post = getPost($postId);
+$postObj = new Xolof\Post(dirname(__DIR__) . "/content/posts/posts.json");
+$post = $postObj->getPost($postId);
 
 if ($post) {
   isUsersFile($postId);
@@ -46,9 +47,9 @@ if ($post) {
   $currentDate = new DateTime();
   $dateStr = $currentDate->format("Y-m-d H:i");
   
-  $posts = getAllPosts();
+  $posts = $postObj->getAllPosts();
 
-  if (titleAlreadyExists($posts, $title, $postId)) {
+  if ($postObj->titleAlreadyExists($posts, $title, $postId)) {
     $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "That title is already used by another post"];
     redirect("/update?id=$postId");
   }
@@ -57,11 +58,11 @@ if ($post) {
   $updatedPost->metadata->updated = $dateStr;
   $updatedPost->metadata->tags = $tags;
   $updatedPost->title = $title;
-  $updatedPost->slug = slugify($title);
+  $updatedPost->slug = $postObj->slugify($title);
   $updatedPost->content = $content;
   
   try {
-    savePosts($posts);
+    $postObj->savePosts($posts);
   } catch (\Exception $e) {
     // $logger->log($e);
     $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "Could not save the data"];
