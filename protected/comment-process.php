@@ -37,8 +37,9 @@ if (!isset($postSlug)) {
     redirect("/blog");
 }
 
+$postObj = new Xolof\Post(dirname(__DIR__) . "/content/posts/posts.json");
 
-if (addComment($postId, $name, $comment)) {
+if ($postObj->addComment($postId, $name, $comment)) {
     $_SESSION["flash_message"] = ["cssClass" => "success", "message" => "Comment added."];
 } else {
     $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "Could not add comment."];
