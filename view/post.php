@@ -1,27 +1,9 @@
 <?php
     require("../templates/header.php");
+    $Parsedown = new Erusev\Parsedown();
 ?>
 
 <?php
-
-$exploded = explode("/", $request);
-if (array_key_exists(1, $exploded)) {
-  $slug = $exploded[1];
-  $post = getPostBySlug($slug);
-  if (!$post) {
-    redirect("/404");
-  }
-  $postId = $post->id;
-} else {
-  $postId = $_GET["id"];
-
-  if (isset($postId) && !is_numeric($postId)) {
-    $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "postId must be numeric"];
-    redirect("http://$host/blog");
-  }
-  
-  $post = getPost($postId);
-}
 
 $allPosts = getAllPosts();
 
@@ -38,6 +20,7 @@ usort($allPosts,
     return 0;
   }
 );
+
 ?>
 
 <?php if ($post): ?>

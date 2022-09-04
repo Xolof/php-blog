@@ -10,14 +10,14 @@
   <?php
   if(!user_is_logged_in()) {
     $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "You must be logged in to update a post"];
-    redirect("http://$host");
+    redirect("/");
   }
 
   $postId = $_GET["id"];
 
   if (!is_numeric($postId)) {
     $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "postId must be numeric"];
-    redirect("http://$host/blog");
+    redirect("/blog");
   }
 
   $post = getPost($postId);

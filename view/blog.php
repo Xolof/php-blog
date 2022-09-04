@@ -1,5 +1,6 @@
 <?php
-    require("../templates/header.php");
+  require("../templates/header.php");
+  $Parsedown = new Erusev\Parsedown();
 ?>
 
 <div class="articles">

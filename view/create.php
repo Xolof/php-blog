@@ -5,7 +5,7 @@
 <?php
 if(!user_is_logged_in()) {
   $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "You must be logged in to create a post"];
-  redirect("http://$host");
+  redirect("/");
 }
 ?>
 

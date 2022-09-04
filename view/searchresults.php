@@ -1,16 +1,17 @@
 <?php
     require("../templates/header.php");
+    $Parsedown = new Erusev\Parsedown();
 ?>
 
 <?php
   if (!isset($_GET["query"]) && !isset($_GET["tag"])) {
     $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "Query or tag need to be set."];
-    redirect("http://$host");
+    redirect("/");
   }
 
   if (isset($_GET["query"]) && isset($_GET["tag"])) {
     $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "Both query and tag can't be set at the same time."];
-    redirect("http://$host");
+    redirect("/");
   }
 
   if (isset($_GET["query"])) {
