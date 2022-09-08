@@ -15,3 +15,5 @@ coverage
 /tests/selenium/geckodriver.log
 /tests/selenium/.pytest.cache/
 /tests/selenium/__pycache__/
+
+/public/css/styles.min.css
