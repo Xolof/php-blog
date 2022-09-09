@@ -18,3 +18,6 @@ coverage
 geckodriver.log
 
 /public/css/styles.min.css
+
+/config/env.php
+
