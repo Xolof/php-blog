@@ -46,7 +46,7 @@ if ($env === "dev") {
 ?>
     <link rel="stylesheet" href="<?php $baseUrl ?>/css/normalize_8.0.1.css" />
     <link rel="stylesheet" href="<?php $baseUrl ?>/css/colors/<?= $colorStyles ?>" />
-    <link rel="stylesheet" href="<?php $baseUrl ?>/css/styles.css" />
+    <link rel="stylesheet" href="<?php $baseUrl ?>/css/<?= $styles ?>" />
     <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
   </head>
   <body>
