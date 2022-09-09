@@ -1,5 +1,11 @@
 <?php
 
+$envFile = require("../config/env.php");
+$siteConfig = require("../config/siteConfig.php");
+
+$pageTitle = $siteConfig["pageTitle"];
+$env = $envFile["env"];
+
 if (isset($_SESSION["flash_message"])) {
     $flash = $_SESSION["flash_message"];
     unset($_SESSION["flash_message"]);
@@ -19,8 +25,14 @@ if (isset($_GET["theme"])) {
 
 $colorStyles = $_SESSION["theme"] === "dark" ? "darkThemeColors.css" : "lightThemeColors.css";
 
-$siteConfig = require("../config/siteConfig.php");
-$pageTitle = $siteConfig["pageTitle"];
+if ($env === "dev") {
+  $styles = "styles.css";
+} else if ($env === "prod") {
+  $styles = "styles.min.css";
+} else {
+  echo "You have to set an environment in the config file. Valid values are 'dev' and 'prod'.";
+  exit;
+}
 ?>
 
 <!DOCTYPE html>
