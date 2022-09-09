@@ -17,6 +17,8 @@ if (isset($_GET["theme"])) {
     }
 }
 
+$colorStyles = $_SESSION["theme"] === "dark" ? "darkThemeColors.css" : "lightThemeColors.css";
+
 $siteConfig = require("../config/siteConfig.php");
 $pageTitle = $siteConfig["pageTitle"];
 ?>
@@ -31,7 +33,7 @@ $pageTitle = $siteConfig["pageTitle"];
       $baseUrl = $_SERVER["HTTP_HOST"];
 ?>
     <link rel="stylesheet" href="<?php $baseUrl ?>/css/normalize_8.0.1.css" />
-    <link rel="stylesheet" href="/css/<?= $_SESSION["theme"] === "dark" ? "darkThemeColors.css" : "lightThemeColors.css" ?>" />
+    <link rel="stylesheet" href="<?php $baseUrl ?>/css/colors/<?= $colorStyles ?>" />
     <link rel="stylesheet" href="<?php $baseUrl ?>/css/styles.css" />
     <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
   </head>
