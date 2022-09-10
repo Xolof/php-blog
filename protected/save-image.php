@@ -1,7 +1,9 @@
 <?php
 
 if (!user_is_logged_in()) {
-    echo "You have to be logged in!";
+    echo json_encode([
+        "message" => "You have to be logged in!"
+    ]);
     http_response_code(401);
     exit;
 }
@@ -16,21 +18,29 @@ if (isset($_POST["saveImage"]) && isset($_FILES["imageFile"])) {
     if ($check !== false) {
         $uploadOk = 1;
     } else {
-        echo "File is not an image.";
+        echo json_encode([
+            "message" => "File is not an image."
+        ]);
         $uploadOk = 0;
         http_response_code(400);
         exit;
     }
 } else {
-    echo "No file was posted.";
+    echo json_encode([
+        "message" => "No file was posted."
+    ]);
     $uploadOk = 0;
     http_response_code(400);
     exit;
 }
 
+$target_file = str_replace([".jpg", ".jpeg", ".png"], ".webp", $target_file);
+
 // Check if file already exists
 if (file_exists($target_file)) {
-    echo "Sorry, file already exists.";
+    echo json_encode([
+        "message" => "Sorry, file already exists."
+    ]);
     $uploadOk = 0;
     http_response_code(400);
     exit;
@@ -38,7 +48,9 @@ if (file_exists($target_file)) {
 
 // Check file size
 if ($_FILES["imageFile"]["size"] > 500000) {
-    echo "Sorry, your file is too large.";
+    echo json_encode([
+        "message" => "Sorry, your file is too large."
+    ]);
     $uploadOk = 0;
     http_response_code(400);
     exit;
@@ -47,19 +59,56 @@ if ($_FILES["imageFile"]["size"] > 500000) {
 // Allow certain file formats
 if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
 && $imageFileType != "webp") {
-    echo "Sorry, only JPG, JPEG, PNG & WEBP files are allowed.";
+    echo json_encode([
+        "message" => "Sorry, only JPG, JPEG, PNG & WEBP files are allowed."
+    ]);
     $uploadOk = 0;
     http_response_code(400);
     exit;
 }
 
 if ($uploadOk == 1) {
-    if (move_uploaded_file($_FILES["imageFile"]["tmp_name"], $target_file)) {
-        echo "The file ". htmlspecialchars(basename($_FILES["imageFile"]["name"])) . " has been uploaded.";
+    try {
+        move_uploaded_file($_FILES["imageFile"]["tmp_name"], $target_file);
+        $info = getimagesize($target_file);
+
+        $isAlpha = false;
+        if ($info['mime'] == 'image/jpeg')
+            $image = imagecreatefromjpeg($target_file);
+        elseif ($isAlpha = $info['mime'] == 'image/gif') {
+            $image = imagecreatefromgif($target_file);
+        } elseif ($isAlpha = $info['mime'] == 'image/png') {
+            $image = imagecreatefrompng($target_file);
+        } elseif ($isAlpha = $info['mime'] == 'image/webp') {
+            $image = imagecreatefrompng($target_file);
+        } else {
+            echo json_encode([
+                "message" => "Sorry, there was an error uploading your file."
+            ]);
+            http_response_code(500);
+            exit;                }
+        if ($isAlpha) {
+            imagepalettetotruecolor($image);
+            imagealphablending($image, true);
+            imagesavealpha($image, true);
+        }
+
+        imagepalettetotruecolor($image);
+        imagealphablending($image, true);
+        imagesavealpha($image, true);
+        imagewebp($image, $target_file, 10);
+        imagedestroy($image);
+
+        echo json_encode([
+            "message" => "The file has been uploaded.",
+            "fileName" => basename($target_file)
+        ]);
         http_response_code(201);
         exit;
-    } else {
-        echo "Sorry, there was an error uploading your file.";
+    } catch (\Exception $e) {
+        echo  json_encode([
+            "message" => "Sorry, there was an error uploading your file."
+        ]);
         http_response_code(500);
         exit;
     }
