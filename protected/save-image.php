@@ -2,7 +2,7 @@
 
 if (!user_is_logged_in()) {
     echo json_encode([
-        "message" => "You have to be logged in!"
+        "message" => "You have to be logged in to do that."
     ]);
     http_response_code(401);
     exit;
