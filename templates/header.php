@@ -1,11 +1,5 @@
 <?php
 
-$envFile = require("../config/env.php");
-$siteConfig = require("../config/siteConfig.php");
-
-$pageTitle = $siteConfig["pageTitle"];
-$env = $envFile["env"];
-
 if (isset($_SESSION["flash_message"])) {
     $flash = $_SESSION["flash_message"];
     unset($_SESSION["flash_message"]);
@@ -25,9 +19,9 @@ if (isset($_GET["theme"])) {
 
 $colorStyles = $_SESSION["theme"] === "dark" ? "darkThemeColors.css" : "lightThemeColors.css";
 
-if ($env === "dev") {
+if (ENV === "dev") {
   $styles = "styles.css";
-} else if ($env === "prod") {
+} else if (ENV === "prod") {
   $styles = "styles.min.css";
 } else {
   echo "You have to set an environment in the config file. Valid values are 'dev' and 'prod'.";
@@ -40,7 +34,7 @@ if ($env === "dev") {
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title><?= $pageTitle ?></title>
+    <title><?= PAGETITLE ?></title>
     <?php
       $baseUrl = $_SERVER["HTTP_HOST"];
 ?>
@@ -53,7 +47,7 @@ if ($env === "dev") {
     <div class="container">
       <header>
         <div class="header-inner">
-          <h1 class="siteTitleHeader"><a href="/"><?= $pageTitle ?></a></h1>
+          <h1 class="siteTitleHeader"><a href="/"><?= PAGETITLE ?></a></h1>
           <?php require("../templates/themeToggler.php"); ?>
           <nav class="header-nav">
             <ul>
