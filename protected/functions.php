@@ -64,7 +64,11 @@ function isUsersFile($postId)
 function redirect($location)
 {
     $host = $_SERVER['HTTP_HOST'];
-    header("Location: http://$host$location");
+    if (ENV === "prod") {
+        header("Location: https://$host$location");
+    } else {
+        header("Location: http://$host$location");
+    }
     exit;
 };
 
