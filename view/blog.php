@@ -1,7 +1,6 @@
 <?php
   require("../templates/header.php");
-  $Parsedown = new Erusev\Parsedown();
-  ?>
+?>
 
 <div class="articles">
 
@@ -33,10 +32,10 @@
 
 <?php foreach ($posts as $post): ?>
   <?php
-      $metaData = $post->metadata;
+    $metaData = $post->metadata;
     $username = getUsername();
     $author = $post->metadata->author;
-    $markdown = $postObj->getIngress($post->content);
+    $ingress = $postObj->getIngress($post->content);
     ?>
   <article>
     <h1><a href="/<?= $post->slug ?>"><?= $post->title ?></a></h1>
@@ -48,8 +47,8 @@
     <?php
       require("../templates/metadata.php");
     ?>
-    <?= $Parsedown->text($markdown) ?>
-    <a href="/<?= $post->slug ?>">Read more</a>
+    <?= $ingress ?>
+    <p><a href="/<?= $post->slug ?>">Read more</a></p>
   </article>
 <?php endforeach; ?>
 

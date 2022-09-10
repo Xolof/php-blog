@@ -44,16 +44,40 @@ class Post
 
     public function getIngress($content)
     {
-        $markdown = substr($content, 0, 500);
-        $exploded = explode(".", $markdown);
-        $lastItem = $exploded[array_key_last($exploded)];
+        $Parsedown = new \Erusev\Parsedown();
 
-        if (!(preg_match('/.*\)$/', $lastItem) || preg_match('/.*\/a>.*/', $lastItem))) {
-            $trimmed = array_slice($exploded, 0, count($exploded) -1);
-            $markdown = implode(".", $trimmed) . ".";
+        $content = $Parsedown->text($content);
+
+        $res = "";
+
+        $split = str_split($content);
+
+        $openHtmlTags = 0;
+        $openMarkDownTags = 0;
+
+        foreach ($split as $char) {
+            if ($char === "<") {
+                $openHtmlTags += 1;
+            }
+
+            if ($char === ">" ) {
+                $openHtmlTags -= 1;
+            }
+
+            $res .= $char;
+
+            if (strlen($res) >= 500 && $openHtmlTags < 1) {
+                if ($char === htmlentities(".")) {
+                    break;
+                }
+
+                if (strlen($res) >= 800 && $openHtmlTags < 1) {
+                    break;
+                }
+            }
         }
 
-        return $markdown;
+        return $res;
     }
 
     public function getPost($id)
