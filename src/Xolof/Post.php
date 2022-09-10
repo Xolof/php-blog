@@ -67,7 +67,7 @@ class Post
             $res .= $char;
 
             if (strlen($res) >= 500 && $openHtmlTags < 1) {
-                if ($char === htmlentities(".")) {
+                if ($char === ".") {
                     break;
                 }
 
