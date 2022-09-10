@@ -86,16 +86,14 @@ if ($uploadOk == 1) {
                 "message" => "Sorry, there was an error uploading your file."
             ]);
             http_response_code(500);
-            exit;                }
+            exit;
+        }
         if ($isAlpha) {
             imagepalettetotruecolor($image);
             imagealphablending($image, true);
             imagesavealpha($image, true);
         }
 
-        imagepalettetotruecolor($image);
-        imagealphablending($image, true);
-        imagesavealpha($image, true);
         imagewebp($image, $target_file, 10);
         imagedestroy($image);
 
@@ -107,7 +105,7 @@ if ($uploadOk == 1) {
         exit;
     } catch (\Exception $e) {
         echo  json_encode([
-            "message" => "Sorry, there was an error uploading your file."
+            "message" => "There was an error uploading your file."
         ]);
         http_response_code(500);
         exit;
