@@ -1,36 +1,35 @@
 <?php
-    require("../templates/header.php");
-    $Parsedown = new Erusev\Parsedown();
+
+require("../templates/header.php");
+$Parsedown = new \Parsedown();
+
+if (!isset($_GET["query"]) && !isset($_GET["tag"])) {
+    $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "Query or tag need to be set."];
+    redirect("/");
+}
+
+if (isset($_GET["query"]) && isset($_GET["tag"])) {
+    $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "Both query and tag can't be set at the same time."];
+    redirect("/");
+}
+
+if (isset($_GET["query"])) {
+    $query = strtolower((string) htmlspecialchars($_GET["query"]));
+} else {
+    $query = false;
+}
+
+if (isset($_GET["tag"])) {
+    $tag = strtolower((string) htmlspecialchars($_GET["tag"]));
+} else {
+    $tag = false;
+}
 ?>
-
-<?php
-      if (!isset($_GET["query"]) && !isset($_GET["tag"])) {
-          $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "Query or tag need to be set."];
-          redirect("/");
-      }
-
-      if (isset($_GET["query"]) && isset($_GET["tag"])) {
-          $_SESSION["flash_message"] = ["cssClass" => "error", "message" => "Both query and tag can't be set at the same time."];
-          redirect("/");
-      }
-
-      if (isset($_GET["query"])) {
-          $query = strtolower((string) htmlspecialchars($_GET["query"]));
-      } else {
-          $query = false;
-      }
-
-      if (isset($_GET["tag"])) {
-          $tag = strtolower((string) htmlspecialchars($_GET["tag"]));
-      } else {
-          $tag = false;
-      }
-    ?>
 
 <div class="articles">
 
 <?php
-      $postObj = new Xolof\Post(dirname(__DIR__) . "/content/posts/posts.json");
+    $postObj = new Xolof\Post(dirname(__DIR__) . "/content/posts/posts.json");
     $allPosts = $postObj->getAllPosts();
 
     usort(
@@ -105,4 +104,4 @@
 <?php
 require("../templates/sidebar.php");
 require("../templates/footer.php");
-?>
+
