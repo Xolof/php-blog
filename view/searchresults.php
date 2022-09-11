@@ -29,32 +29,34 @@ if (isset($_GET["tag"])) {
 <div class="articles">
 
 <?php
-    $postObj = new Xolof\Post(dirname(__DIR__) . "/content/posts/posts.json");
-    $allPosts = $postObj->getAllPosts();
 
-    usort(
-        $allPosts,
-        function ($a, $b) {
-            if ($a->metadata->created < $b->metadata->created) {
-                return 1;
-            }
+$postObj = new Xolof\Post(dirname(__DIR__) . "/content/posts/posts.json");
+$allPosts = $postObj->getAllPosts();
 
-            if ($a->metadata->created > $b->metadata->created) {
-                return -1;
-            }
-
-            return 0;
+usort(
+    $allPosts,
+    function ($a, $b) {
+        if ($a->metadata->created < $b->metadata->created) {
+            return 1;
         }
-    );
 
-    $resultsExist = false;
+        if ($a->metadata->created > $b->metadata->created) {
+            return -1;
+        }
 
-    if ($query) {
-        $searchParam = $query;
-    } else {
-        $searchParam = $tag;
-    };
-    ?>
+        return 0;
+    }
+);
+
+$resultsExist = false;
+
+if ($query) {
+    $searchParam = $query;
+} else {
+    $searchParam = $tag;
+};
+
+?>
 
 <h1 class="pageHeading pageTitleHeader">Results for: "<?= $searchParam ?>"</h1>
 
