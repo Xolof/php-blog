@@ -2,6 +2,10 @@
 
 namespace Xolof;
 
+use \Parsedown;
+use \stdClass;
+use \DateTime;
+
 class Post
 {
     protected $id = false;
@@ -44,7 +48,7 @@ class Post
 
     public function getIngress($content)
     {
-        $Parsedown = new \Parsedown();
+        $Parsedown = new Parsedown();
 
         $content = $Parsedown->text($content);
 
@@ -66,12 +70,12 @@ class Post
 
             $res .= $char;
 
-            if (strlen($res) >= 500 && $openHtmlTags < 1) {
+            if (strlen($res) >= 500 && $openHtmlTags == 0) {
                 if ($char === ".") {
                     break;
                 }
 
-                if (strlen($res) >= 800 && $openHtmlTags < 1) {
+                if (strlen($res) >= 800 && $openHtmlTags == 0) {
                     break;
                 }
             }
@@ -125,9 +129,9 @@ class Post
     {
         $posts = $this->getAllPosts();
 
-        $commentObj = new \stdClass();
+        $commentObj = new stdClass();
 
-        $currentDate = new \DateTime();
+        $currentDate = new DateTime();
         $dateStr = $currentDate->format("Y-m-d H:i");
         $commentObj->date = $dateStr;
 
