@@ -17,5 +17,8 @@
             "name": "Olof Johansson",
             "email": "oljo@protonmail.ch"
         }
-    ]
+    ],
+    "require": {
+        "erusev/parsedown": "^1.7"
+    }
 }

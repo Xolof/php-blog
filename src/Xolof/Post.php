@@ -44,7 +44,7 @@ class Post
 
     public function getIngress($content)
     {
-        $Parsedown = new \Erusev\Parsedown();
+        $Parsedown = new \Parsedown();
 
         $content = $Parsedown->text($content);
 
