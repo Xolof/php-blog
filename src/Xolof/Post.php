@@ -1,11 +1,24 @@
 <?php
 
+/**
+ * PHP Version 7.4.3
+ *
+ * @author Olof Johansson <oljo@protonmail.ch>
+ */
+
 namespace Xolof;
 
 use \Parsedown;
 use \stdClass;
 use \DateTime;
 
+
+/**
+ * A class for managing posts data.
+ * 
+ * This class performs some different operations related to posts.
+ * It will later be broken out into separate classes.
+ */
 class Post
 {
     protected $id = false;
