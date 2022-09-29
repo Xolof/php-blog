@@ -15,51 +15,95 @@ use \DateTime;
 
 /**
  * A class for managing posts data.
- * 
+ *
  * This class performs some different operations related to posts.
  * It will later be broken out into separate classes.
  */
 class Post
 {
-    protected $id = false;
-    protected $json = false;
-    protected $postsFile;
+    protected $id;
+    protected $json;
+    protected string $postsFile;
 
+    /**
+     * This is the constructor.
+     *
+     * @param string $postsFile The file containing the posts data.
+     */
     public function __construct($postsFile)
     {
+        $this->id = null;
+        $this->json = null;
         $this->postsFile = $postsFile;
     }
 
-    public function getAllPosts()
+    /**
+     * Get an array with all the posts data.
+     *
+     * @return array<object>
+     */
+    public function getAllPosts(): array
     {
         if (file_exists($this->postsFile)) {
             $handle = fopen($this->postsFile, "rb");
-            $posts = fread($handle, filesize($this->postsFile));
-            fclose($handle);
-            return (array) json_decode($posts);
+            $fileSize = filesize($this->postsFile);
+            if ($handle && $fileSize > 0) {
+                $posts = fread($handle, $fileSize);
+                fclose($handle);
+                if ($posts) {
+                    return (array) json_decode($posts);
+                }
+            }
         }
         return [];
     }
 
-    public function findPostBySlug($slug)
+    /**
+     * Find a post by it's slug.
+     *
+     * @param string $slug A slug used to identify the post.
+     *
+     * @return void
+     */
+    public function findPostBySlug($slug): void
     {
         $allPosts = $this->getAllPosts();
 
         foreach ($allPosts as $p) {
+            if (!isset($p->slug)) {
+                continue;
+            }
             if ($p->slug === $slug) {
                 $post = $p;
-                $this->id = $post->id;
+                if (isset($post->id)) {
+                    $this->id = $post->id;
+                }
                 $this->json = $post;
             }
         }
     }
 
-    public function getJson()
+    /**
+     * Get the posts data as JSON.
+     *
+     * @return ?object
+     */
+    public function getJson(): ?object
     {
-        return $this->json;
+        if ($this->json) {
+            return $this->json;
+        }
+        return null;
     }
 
-    public function getIngress($content)
+    /**
+     * Gets the ingress of a post.
+     *
+     * @param string $content The whole main content of the post.
+     *
+     * @return string $res The ingress of the post.
+     */
+    public function getIngress($content): string
     {
         $Parsedown = new Parsedown();
 
@@ -83,12 +127,12 @@ class Post
 
             $res .= $char;
 
-            if (strlen($res) >= 500 && $openHtmlTags == 0) {
+            if (strlen($res) >= 500 && $openHtmlTags === 0) {
                 if ($char === ".") {
                     break;
                 }
 
-                if (strlen($res) >= 800 && $openHtmlTags == 0) {
+                if (strlen($res) >= 800 && $openHtmlTags === 0) {
                     break;
                 }
             }
@@ -97,25 +141,54 @@ class Post
         return $res;
     }
 
-    public function getPost($id)
+    /**
+     * Get a post by it's id.
+     *
+     * @param int $id The post's id.
+     *
+     * @return ?object
+     */
+    public function getPost($id): ?object
     {
         $allPosts = $this->getAllPosts();
         foreach ($allPosts as $post) {
+            if (!isset($post->id)) {
+                continue;
+            }
             if (intval($post->id) === intval($id)) {
                 return $post;
             }
         }
-        return false;
+        return null;
     }
 
-    public function slugify($title)
+    /**
+     * Get a slug from a post's title.
+     *
+     * @param string $title The title to slugify.
+     *
+     * @return string
+     */
+    public function slugify($title): string
     {
         return strtolower(str_replace(" ", "-", $title));
     }
 
-    public function titleAlreadyExists($posts, $title, $postId)
+    /**
+     * Check if the title already exists.
+     *
+     * @param array<object> $posts  An array containing all the posts.
+     * @param string        $title  The title of the post to create or update.
+     * @param int           $postId The id of the post to create or update.
+     *
+     * @return bool
+     */
+    public function titleAlreadyExists($posts, $title, $postId): bool
     {
         foreach ($posts as $post) {
+            if (!isset($post->title) || !isset($post->id)) {
+                continue;
+            }
             if ($post->title === $title && $post->id != $postId) {
                 return true;
             }
@@ -123,11 +196,19 @@ class Post
         return false;
     }
 
-    public function getAllTags()
+    /**
+     * Get all of the tags.
+     *
+     * @return array<string> $tags An array with all tags.
+     */
+    public function getAllTags(): array
     {
         $posts = $this->getAllPosts();
         $tags = [];
         foreach ($posts as $post) {
+            if (!isset($post->metadata)) {
+                continue;
+            }
             $postTags = explode(" ", $post->metadata->tags);
             foreach ($postTags as $tag) {
                 if (!in_array($tag, $tags)) {
@@ -138,7 +219,16 @@ class Post
         return $tags;
     }
 
-    public function addComment($postId, $name, $comment)
+    /**
+     * Add a comment for a post.
+     *
+     * @param int    $postId  The id of the post to add a comment to.
+     * @param string $name    The name the user entered in the comment form.
+     * @param string $comment The comment.
+     *
+     * @return bool
+     */
+    public function addComment($postId, $name, $comment): bool
     {
         $posts = $this->getAllPosts();
 
@@ -152,6 +242,9 @@ class Post
         $commentObj->name = $name;
 
         foreach ($posts as $post) {
+            if (!isset($post->comments) || !isset($post->id)) {
+                continue;
+            }
             if ($post->id == $postId) {
                 $post->comments[] = $commentObj;
             }
@@ -165,10 +258,25 @@ class Post
         return true;
     }
 
-    public function savePosts($posts)
+    /**
+     * Save the posts data.
+     *
+     * @param array<object> $posts An array containing all the posts.
+     *
+     * @return void
+     */
+    public function savePosts($posts): void
     {
-        $handle = fopen($this->postsFile, "wb");
-        fwrite($handle, json_encode($posts));
-        fclose($handle);
+        if (file_exists($this->postsFile)) {
+            $handle = fopen($this->postsFile, "wb");
+            $fileSize = filesize($this->postsFile);
+            if ($handle && $fileSize > 0) {
+                $postsJson = json_encode($posts);
+                if ($postsJson) {
+                    fwrite($handle, $postsJson);
+                }
+                fclose($handle);
+            }
+        }
     }
 }

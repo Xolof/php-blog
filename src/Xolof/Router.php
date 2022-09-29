@@ -21,7 +21,7 @@ class Router
     protected string $requireFile;
     protected string $redirectPath;
     protected Post   $post;
-    
+
     /**
      * This is the constructor.
      *
@@ -53,7 +53,7 @@ class Router
             $this->requireFile = $file;
         };
     }
-    
+
     /**
      * If the requested path and method matches,
      * set a file to require.
@@ -74,7 +74,7 @@ class Router
 
     /**
      * Set redirectPath to /404 if the number of slashes in the request are too many.
-     * 
+     *
      * @return void
      */
     public function validate(): void
@@ -89,9 +89,9 @@ class Router
     /**
      * Check if the path corresponds to a posts slug.
      * If there's a match, set the file to require
-     * and return the posts JSON. 
+     * and return the posts JSON.
      *
-     * @return ?object 
+     * @return ?object
      */
     public function getSpecialPage(): ?object 
     {
